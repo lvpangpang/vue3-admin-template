@@ -22,19 +22,19 @@ export function getInfo() {
 }
 
 /**
+ * 获取菜单
+ * @returns
+ */
+export function getMenu(data) {
+  return service.post('/admin-module/account/slugMenu', data)
+}
+
+/**
  * 刷新token
  * @returns
  */
 export function refreshAuth() {
   return service.post('/admin-module/auth/refresh', false)
-}
-
-/**
- * 获取用户信息
- * @returns
- */
-export function getMenu(data) {
-  return service.post('/admin-module/account/slugMenu', data)
 }
 
 /**

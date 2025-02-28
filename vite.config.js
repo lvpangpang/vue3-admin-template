@@ -4,7 +4,7 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import vueDevTools from 'vite-plugin-vue-devtools'
 
-const moduleArr = ['admin', 'center']
+const moduleArr = ['admin', 'center', 'patrol']
 
 export default ({ mode }) => {
   const env = loadEnv(mode, process.cwd())

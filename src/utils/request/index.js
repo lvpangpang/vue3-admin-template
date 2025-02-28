@@ -3,6 +3,7 @@ import { ElMessage } from 'element-plus'
 import requestConfig from './config'
 import { getToken, removeToken } from '../auth'
 import { getSignature } from './signature'
+import { getFileName, downloadFile } from './download'
 
 const { timeout, independentBaseUrl } = requestConfig
 const service = axios.create({
@@ -48,10 +49,8 @@ service.interceptors.request.use(
 
 service.interceptors.response.use(
   (response) => {
-    const { config } = response
     const res = response.data
     const { code } = res
-    console.log(code)
     if (code) {
       if (code === 200) {
         return res
@@ -69,8 +68,12 @@ service.interceptors.response.use(
       })
       return Promise.reject(res)
     } else {
-      // 导出文件直接抛出，后续用独立的处理函数处理
-      return res
+      const isBlob = toString.call(res) === '[object Blob]'
+      if (res) {
+        if (isBlob) {
+          downloadFile(new Blob([res], { type: response.headers['content-type'] }), decodeURI(getFileName(response.headers['content-disposition'])))
+        }
+      }
     }
   },
   (error) => {
