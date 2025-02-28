@@ -1,25 +1,23 @@
 import { defineStore } from 'pinia'
-import { login } from '@/api/user'
-import { setToken } from '@/utils/auth'
+import { getInfo, getMenu } from '@/api/user'
 
 export const useUserStore = defineStore('user', {
   state: () => {
     return {
-      name: '',
-      roles: '',
-      userinfo: {},
-      need_reset_password: false,
+      userInfo: {},
+      menu: []
     }
   },
   actions: {
-    login(data) {
-      return login(data)
-        .then((res) => {
-          const { access_token, expired_in } = res.data
-          setToken(access_token, expired_in)
-        })
+    getInfo() {
+      return getInfo().then((res) => {
+        this.userInfo = res.data
+      })
     },
-    getUserInfo() {},
-    getUserMenu() {}
+    getMenu() {
+      return getMenu({ slug: 'park' }).then((res) => {
+        this.menu = res.data
+      })
+    },
   },
 })

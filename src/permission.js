@@ -2,6 +2,7 @@ import router from './router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { getToken } from '@/utils/auth'
+import { useUserStore } from '@/stores/user'
 
 NProgress.configure({ showSpinner: false })
 
@@ -15,8 +16,10 @@ router.beforeEach(async (to) => {
       return { name: 'home' }
     }
     // 判断有没有用户信息+菜单，没有则请求用户信息+菜单
-    if (true) {
-      console.log(1111111)
+    const userStore = useUserStore()
+    if (!userStore.userInfo.id) {
+      await userStore.getInfo()
+      await userStore.getMenu()
     }
   } else {
     if (!whiteList.includes(to.path)) {
