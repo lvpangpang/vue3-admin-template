@@ -1,0 +1,324 @@
+// have tree
+.tree-container {
+  display: flex;
+  justify-content: flex-start;
+  height: 100%;
+  margin: 0 10px 0 0;
+  background: #ffffff;
+  border-radius: 2px;
+
+  .container-left {
+    width: 250px;
+    height: 100%;
+    background: #ffffff;
+    padding: 12px 12px 0;
+    border-right: 1px solid #eeeeee;
+  }
+
+  .app-container {
+    margin-right: 0;
+    overflow: hidden;
+    padding-bottom: 65px; // 55 + 10
+    width: calc(100% - 250px);
+    border-left: none;
+    margin-left: 0;
+    &.is-table {
+      padding-bottom: 0; // has tree and table
+    }
+  }
+
+  .pagination-container {
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: absolute;
+    padding-right: 10px;
+    bottom: 0;
+    width: 100%;
+  }
+
+  &.is-map {
+    height: calc(100% + 10px);
+    margin-right: 0;
+
+    .app-container {
+      padding: 0;
+    }
+  }
+}
+
+// only table
+.app-container {
+  height: 100%;
+  margin: 0 10px;
+  background: #ffffff;
+  border-radius: 2px;
+  overflow-y: auto;
+
+  .operation-container {
+    width: 100%;
+    height: 55px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    &-left {
+      display: flex;
+      align-items: baseline;
+
+      > div {
+        margin-right: 10px;
+      }
+    }
+
+    &-right {
+      display: flex;
+
+      > * {
+        margin-left: 10px;
+      }
+    }
+
+    .dl-input {
+      max-width: 200px;
+    }
+
+    .dl-select {
+      max-width: 200px;
+    }
+
+    .dl-date-picker {
+      min-width: 250px;
+      max-width: 300px;
+    }
+
+    .search-form-container.is-many-rows {
+      .dl-input {
+        max-width: unset;
+      }
+
+      .dl-select {
+        max-width: unset;
+      }
+
+      .dl-date-picker {
+        min-width: unset;
+        max-width: unset;
+      }
+    }
+    .search-form-container.is-one-line {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      position: relative;
+      padding-left: 12px;
+      padding-right: 47px;
+      .el-form-item {
+        margin-bottom: 0;
+        .el-form-item__content {
+          line-height: 36px;
+        }
+      }
+      .el-form-item.search-btn {
+        width: auto !important;
+        margin-right: 0;
+        flex-shrink: 0;
+        flex-grow: 1;
+        text-align: right;
+      }
+    }
+  }
+
+  .table-container {
+    height: calc(100% - 125px); // 140 = 55 + 10 + 40 + 20
+    overflow: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    &.no-pagination {
+      height: calc(100% - 65px); // 140 = 55 + 10 + 40 + 20
+    }
+  }
+
+  .pagination-container {
+    height: 60px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    border-top: 1px solid #eeeeee;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  &.no-operation-container {
+    padding-top: 10px;
+  }
+
+  &.is-map {
+    height: calc(100% + 10px);
+    margin-right: 0;
+    margin-left: 0;
+    padding: 0;
+  }
+
+  &:has(.search-form-container) {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-form-container {
+    position: relative;
+    padding-top: 12px;
+    padding-left: 12px;
+    padding-bottom: 12px;
+    padding-right: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    .el-form {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr); // 每行展示4个
+      column-gap: 15px;
+      row-gap: 5px;
+      width: calc(100% - 233px); // 248 = 100*2 按钮 + 18 箭头 + right 15
+      .el-form-item {
+        margin-bottom: 0;
+        margin-right: 0;
+        &__content {
+          line-height: 36px;
+          width: 100%;
+        }
+        .dl-select {
+          max-width: none;
+        }
+      }
+      .el-form-item:last-child {
+        position: absolute;
+        right: 15px;
+      }
+    }
+    &.no-more {
+      display: flex;
+      justify-content: flex-end;
+      padding-right: 220px;
+      .el-form {
+        width: 100%;
+      }
+      &.gtc-1 {
+        .el-form {
+          width: 25%;
+          grid-template-columns: repeat(1, 1fr); // 每行展示4个
+        }
+      }
+      &.gtc-2 {
+        .el-form {
+          width: 50%;
+          grid-template-columns: repeat(2, 1fr); // 每行展示4个
+        }
+      }
+      &.gtc-3 {
+        .el-form {
+          width: 75%;
+          grid-template-columns: repeat(3, 1fr); // 每行展示4个
+        }
+      }
+    }
+    &:has(.operation-container) {
+      border-bottom: none;
+    }
+    .operation-container {
+      flex-grow: 1;
+      border-bottom: none;
+      margin-bottom: 0;
+      height: 40px;
+      width: auto;
+    }
+  }
+
+  .data-container {
+    position: relative;
+    flex-grow: 1;
+    .operation-container {
+      border-bottom: none;
+      margin-bottom: 0;
+      height: 40px;
+    }
+    .table-container {
+      position: absolute;
+      width: 100%;
+      height: calc(100% - 100px); // operation-container  40 + pagination-container 60
+    }
+    .pagination-container {
+      position: absolute;
+      width: 100%;
+      bottom: 0;
+    }
+  }
+}
+
+// tabs
+.app-container-tabs {
+  height: 100%;
+  .el-tabs__header {
+    background-color: #fff;
+    margin: 0 10px;
+    border: 1px solid #eeeeee;
+    border-top: none;
+    border-bottom: none;
+
+    .el-tabs__nav-wrap {
+      &::after {
+        height: 1px;
+        background-color: #e7e7e7;
+      }
+      .el-tabs__active-bar {
+        background: #0052d9;
+        height: 1px;
+      }
+
+      .el-tabs__item {
+        padding: 0 16px !important;
+        height: 46px;
+        line-height: 46px;
+        font-weight: normal;
+      }
+      .el-tabs__item.is-active {
+        font-size: 14px;
+        font-weight: normal;
+        color: #0052d9;
+      }
+    }
+  }
+  .el-tabs__content {
+    height: calc(100% - 46px);
+    .el-tab-pane {
+      height: 100%;
+    }
+  }
+}
+
+// form
+.form-container-left {
+  .el-form-item {
+    width: 48%;
+  }
+}
+.form-container-center {
+  padding-top: 24px;
+  .el-form-item {
+    margin: 0 auto;
+    width: 48%;
+  }
+}
+
+// scroll
+.__vuescroll.has-no-content {
+  .__panel {
+    .__view {
+      height: 100%;
+    }
+  }
+}

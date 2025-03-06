@@ -15,7 +15,7 @@ export const useUserStore = defineStore('user', {
       })
     },
     getMenu() {
-      return getMenu({ slug: 'park' }).then((res) => {
+      return getMenu({ slug: 'energy' }).then((res) => {
         this.menu = res.data
       })
     },

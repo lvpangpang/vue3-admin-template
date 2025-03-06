@@ -26,6 +26,7 @@ export default ({ mode }) => {
       alias: {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
       },
+      extensions: ['.js', '.json', '.vue'],
     },
     server: {
       proxy: getProxyObj(moduleArr),
