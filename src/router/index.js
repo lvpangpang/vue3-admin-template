@@ -1,19 +1,25 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Layout from '@/layout/index.vue'
-import Home from '@/views/home/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/',
-      name: 'home',
-      component: Home,
-    },
-    {
       path: '/login',
       name: 'login',
       component: () => import('@/views/login/index.vue'),
+    },
+    {
+      path: '/',
+      name: 'home',
+      component: Layout,
+      children: [
+        {
+          name: 'HomeIndex',
+          path: '',
+          component: () => import('@/views/home/index')
+        },
+      ],
     },
     {
       path: '/device',
@@ -84,8 +90,7 @@ const router = createRouter({
             title: '水电能耗',
             icon: 'parkExamine',
           },
-          children: [
-          ],
+          children: [],
         },
       ],
     },

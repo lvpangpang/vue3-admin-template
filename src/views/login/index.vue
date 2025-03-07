@@ -6,10 +6,6 @@
     :style="{ 'background-image': 'url(' + background + ')' }"
   >
     <div class="login-container dl-flex dl-flex-jc-center">
-      <div class="login-title">
-        <span>{{ title }}</span>
-      </div>
-      <div class="login-container-left" :style="{ 'background-image': 'url(' + logo + ')' }"></div>
       <el-form
         ref="loginForm"
         :model="loginForm"
@@ -122,8 +118,6 @@ export default {
       tenant: [{ required: true, trigger: ['blur', 'change'], validator: validateTenant }],
     })
     return {
-      // background: require('@/assets/images/login/background.png'),
-      // logo: require('@/assets/images/login/info.png'),
       loginForm: {
         username: '',
         password: '',
@@ -144,7 +138,6 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters(['title']),
     hasMutiTenant: function () {
       return this.tenantList.length > 1
     },
@@ -234,6 +227,15 @@ export default {
 </script>
 
 <style lang="scss">
+.login-page {
+  width: 500px;
+  margin: 400px auto;
+  .login-form-title {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 30px;
+  }
+}
 .platform-information {
   position: fixed;
   left: 50%;

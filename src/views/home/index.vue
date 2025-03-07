@@ -1,9 +1,7 @@
 <template>
-  <div class="home-box">
-    <div class="name">首页</div>
-    <router-link to="/test1">test1</router-link>
-    <router-link to="/test2">test2</router-link>
-    <el-button type="primary" :loading="exportLoading" @click="handleExport">导出</el-button>
+  <div class="home-box app-container">
+    <div class="name">欢迎来到我的空间</div>
+    <!-- <el-button type="primary" :loading="exportLoading" @click="handleExport">导出</el-button> -->
   </div>
 </template>
 
@@ -26,8 +24,6 @@ function handleExport() {
 
 <style lang="scss">
 .home-box {
-  .name {
-    color: red;
-  }
+  padding: 10px;
 }
 </style>

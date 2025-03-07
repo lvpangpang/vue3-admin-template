@@ -29,11 +29,9 @@
 </template>
 
 <script>
-// import path from 'path'
 import { isExternal } from '@/utils/validate'
 import Item from './Item'
 import AppLink from './Link'
-// import { mapGetters } from 'vuex'
 
 export default {
   name: 'SidebarItem',
@@ -60,7 +58,6 @@ export default {
     return {}
   },
   computed: {
-    // ...mapGetters(['roles']),
     needRender: function () {
       const hasMeta = 'meta' in this.item // 有meta
       const metaIsHidden = hasMeta && this.item.hidden // meta.hidden 为true
