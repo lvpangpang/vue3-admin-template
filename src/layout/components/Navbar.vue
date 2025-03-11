@@ -2,6 +2,7 @@
   <div class="navbar">
     <div class="left-menu">
       <hamburger :is-active="sidebar.opened" class="hamburger-container" @toggleClick="toggleSideBar" />
+      <breadcrumb class="breadcrumb-container" />
     </div>
     <div class="right-menu"></div>
   </div>
@@ -11,10 +12,12 @@
 import { mapState } from 'pinia'
 import useAppStore from '@/stores/app'
 import Hamburger from './Hamburger'
+import Breadcrumb from './Breadcrumb'
 
 export default {
   components: {
-    Hamburger
+    Hamburger,
+    Breadcrumb
   },
   computed: {
     ...mapState(useAppStore, ['sidebar'])
@@ -29,12 +32,23 @@ export default {
 
 <style lang="scss">
 .navbar {
+  display: flex;
+  justify-content: space-between;
   height: 50px;
   overflow: hidden;
   position: relative;
   background-color: #fff;
   .left-menu {
-    padding: 10px 0;
+    padding: 12px 0;
+    .hamburger-container {
+      display: inline-block;
+      vertical-align: middle;
+    }
+    .breadcrumb-container {
+      display: inline-block;
+      vertical-align: middle;
+      width: auto !important;
+    }
   }
 }
 </style>
