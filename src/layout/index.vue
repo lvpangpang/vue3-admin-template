@@ -1,5 +1,5 @@
 <template>
-  <div class="app-wrapper clearfix">
+  <div :class="classObj" class="app-wrapper clearfix">
     <sidebar class="sidebar-container" />
     <div class="main-container">
       <div class="fixed-header">
@@ -11,8 +11,9 @@
 </template>
 
 <script>
+import { mapState } from 'pinia'
 import { Sidebar, Navbar, AppMain } from './components'
-// import ResizeMixin from './mixin/ResizeHandler'
+import useAppStore from '@/stores/app'
 
 export default {
   name: 'LayoutIndex',
@@ -21,28 +22,13 @@ export default {
     Sidebar,
     AppMain
   },
-  // mixins: [ResizeMixin],
   computed: {
-    // sidebar() {
-    //   return this.$store.state.app.sidebar
-    // },
-    // device() {
-    //   return this.$store.state.app.device
-    // },
-    // fixedHeader() {
-    //   return this.$store.state.settings.fixedHeader
-    // },
-    // classObj() {
-    //   return {
-    //     hideSidebar: !this.sidebar.opened,
-    //     openSidebar: this.sidebar.opened,
-    //     withoutAnimation: this.sidebar.withoutAnimation
-    //   }
-    // }
-  },
-  methods: {
-    handleClickOutside() {
-      // this.$store.dispatch('app/closeSideBar', { withoutAnimation: false })
+    ...mapState(useAppStore, ['sidebar']),
+    classObj() {
+      return {
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened
+      }
     }
   }
 }

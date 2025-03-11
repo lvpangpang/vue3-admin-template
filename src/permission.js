@@ -2,7 +2,7 @@ import router from './router'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { getToken } from '@/utils/auth'
-import { useUserStore } from '@/stores/user'
+import useUserStore from '@/stores/user'
 
 NProgress.configure({ showSpinner: false })
 

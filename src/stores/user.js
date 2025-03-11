@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { getInfo, getMenu } from '@/api/user'
 
-export const useUserStore = defineStore('user', {
+const useUserStore = defineStore('user', {
   state: () => {
     return {
       userInfo: {},
@@ -21,3 +21,5 @@ export const useUserStore = defineStore('user', {
     },
   },
 })
+
+export default useUserStore

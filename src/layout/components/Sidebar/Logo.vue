@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-logo">管理系统</div>
+  <div class="sidebar-logo">XX管理系统</div>
 </template>
 
 <script>

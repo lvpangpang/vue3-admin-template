@@ -4,6 +4,7 @@
     <el-scrollbar wrap-class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
+        :collapse="!sidebar.opened"
         background-color="#2c2c2c"
         text-color="#a1a3a9"
         active-text-color="#fff"
@@ -15,34 +16,24 @@
 </template>
 
 <script>
-// import { mapGetters } from 'vuex'
 import { mapState } from 'pinia'
+import useUserStore from '@/stores/user'
+import useAppStore from '@/stores/app'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem.vue'
-import { useUserStore } from '@/stores/user'
 
 export default {
   components: { SidebarItem, Logo },
   computed: {
-    // ...mapGetters(['sidebar', 'roles', 'sidebar_routes']),
     ...mapState(useUserStore, ['menu']),
-    routes() {
-      const { routes } = this.$router.options
-      return routes
-    },
+    ...mapState(useAppStore, ['sidebar']),
     activeMenu() {
       const { meta, path } = this.$route
       if (meta.activeMenu) {
         return meta.activeMenu
       }
       return !path.endsWith('/') ? path : path.substring(0, path.length - 1)
-    },
-    showLogo() {
-      // return this.$store.state.settings.sidebarLogo
     }
-  },
-  mounted() {
-    console.log(useUserStore().menu[0].children)
   }
 }
 </script>

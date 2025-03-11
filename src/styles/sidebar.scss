@@ -55,12 +55,6 @@
       text-decoration: none;
     }
 
-    .svg-icon {
-      margin: -2px 12px 0 -2px;
-      font-size: 18px;
-      vertical-align: middle;
-    }
-
     .sub-el-icon {
       margin: -2px 12px 0 -2px;
       color: currentColor;
@@ -88,11 +82,6 @@
       color: #fff !important;
     }
 
-    .is-active > .el-sub-menu__title {
-      color: $menuActiveText !important;
-      background-color: $menuActiveBg !important;
-    }
-
     .el-menu-item,
     .el-sub-menu__title {
       height: 36px !important;
@@ -116,22 +105,7 @@
     & .nest-menu .el-menu-item {
       padding-left: 48px !important;
     }
-    // 三级菜单样式调整
-    & .nest-menu .el-submenu {
-      .el-sub-menu__title {
-        padding-left: 48px !important;
-      }
-      .el-menu-item {
-        padding-left: 60px !important; // 48+12
-        padding-right: 20px;
-        span {
-          display: inline-block;
-          text-overflow: ellipsis;
-          overflow: hidden;
-          width: 100%;
-        }
-      }
-    }
+
   }
 
   .hideSidebar {
@@ -221,67 +195,6 @@
           }
         }
       }
-    }
-  }
-
-  // 折叠时图标底色
-  .el-menu--collapse {
-    .el-menu-item,
-    .el-sub-menu__title {
-      background-color: $menuCollapseItemBg !important;
-    }
-  }
-
-  .el-menu--collapse .el-menu .el-submenu {
-    min-width: $sideBarWidth !important;
-  }
-
-  .withoutAnimation {
-    .main-container,
-    .sidebar-container {
-      transition: none;
-    }
-  }
-}
-
-// when menu collapsed
-.el-menu--vertical {
-  & > .el-menu {
-    .svg-icon {
-      margin-right: 12px;
-      margin-left: -2px;
-    }
-    .sub-el-icon {
-      margin-right: 12px;
-      margin-left: -2px;
-    }
-  }
-
-  .nest-menu .el-submenu > .el-sub-menu__title,
-  .el-menu-item {
-    &:hover {
-      // you can use $subMenuHover
-      background-color: $menuHover !important;
-      color: $menuHoverText !important;
-    }
-  }
-
-  // the scroll bar appears when the subMenu is too long
-  > .el-menu--popup {
-    max-height: 100vh;
-    overflow-y: auto;
-
-    &::-webkit-scrollbar-track-piece {
-      background: #d3dce6;
-    }
-
-    &::-webkit-scrollbar {
-      width: 6px;
-    }
-
-    &::-webkit-scrollbar-thumb {
-      background: #99a9bf;
-      border-radius: 20px;
     }
   }
 }
