@@ -38,11 +38,6 @@ export default {
       type: Object,
       required: true,
     },
-    // route是否是嵌套的，存在多个子菜单时为true
-    isNest: {
-      type: Boolean,
-      default: false,
-    },
     // 当前route的 base路径
     basePath: {
       type: String,
@@ -50,15 +45,8 @@ export default {
     },
   },
   data() {
-    this.onlyOneChild = null // To fix https://github.com/PanJiaChen/vue-admin-template/issues/237
+    this.onlyOneChild = null
     return {}
-  },
-  computed: {
-    needRender: function () {
-      const hasMeta = 'meta' in this.item // 有meta
-      const metaIsHidden = hasMeta && this.item.hidden // meta.hidden 为true
-      return !metaIsHidden
-    },
   },
   methods: {
     /**
