@@ -1,5 +1,8 @@
 <template>
-  <div class="sidebar-logo">XX管理系统</div>
+  <div class="sidebar-logo">
+    <span v-if="!collapse">XX管理系统</span>
+    <span v-else>XX</span>
+  </div>
 </template>
 
 <script>
@@ -8,7 +11,7 @@ export default {
   props: {
     collapse: {
       type: Boolean,
-      required: true,
+      required: false,
     },
   }
 }

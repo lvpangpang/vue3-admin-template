@@ -1,41 +1,37 @@
 <template>
-  <div v-if="needRender">
-    <!-- 当前route children长度为1 或 没有children -->
-    <template v-if="hasOneShowingChild(item.children, item) && onlyOneChild.noShowingChildren">
-      <app-link :to="resolvePath(onlyOneChild.path)">
-        <el-menu-item
-          :index="resolvePath(onlyOneChild.path)"
-          :class="{ 'submenu-title-noDropdown': !isNest }"
-        >
-          <item :icon="onlyOneChild.icon" :title="onlyOneChild.title" />
-        </el-menu-item>
-      </app-link>
+  <!-- 当前route children长度为1 或 没有children -->
+  <template v-if="hasOneShowingChild(item.children, item) && onlyOneChild.noShowingChildren">
+    <app-link :to="resolvePath(onlyOneChild.path)">
+      <el-menu-item :index="resolvePath(onlyOneChild.path)">
+        <el-icon v-if="onlyOneChild.icon"><Folder /></el-icon>
+        <template #title>{{ onlyOneChild.title }}</template>
+      </el-menu-item>
+    </app-link>
+  </template>
+  <!-- 当前route 至少有两个子route -->
+  <el-sub-menu v-else :index="resolvePath(item.path)">
+    <template #title>
+      <el-icon v-if="item.icon"><Folder /></el-icon>
+      <span>{{ item.title }}</span>
     </template>
-    <!-- 当前route 至少有两个子route -->
-    <el-sub-menu v-else ref="subMenu" :index="resolvePath(item.path)">
-      <template #title>
-        <item :icon="item.icon" :title="item.title" />
-      </template>
-      <sidebar-item
-        v-for="child in item.children"
-        :key="child.path"
-        :is-nest="true"
-        :item="child"
-        :base-path="resolvePath(child.path)"
-        class="nest-menu"
-      />
-    </el-sub-menu>
-  </div>
+    <sidebar-item
+      v-for="child in item.children"
+      :key="child.path"
+      :is-nest="true"
+      :item="child"
+      :base-path="resolvePath(child.path)"
+      class="nest-menu"
+    />
+  </el-sub-menu>
 </template>
 
 <script>
 import { isExternal } from '@/utils/validate'
-import Item from './Item'
 import AppLink from './Link'
 
 export default {
   name: 'SidebarItem',
-  components: { Item, AppLink },
+  components: { AppLink },
   props: {
     // route对象
     item: {

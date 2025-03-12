@@ -1,7 +1,7 @@
 <template>
   <div class="has-logo">
-    <logo />
-    <el-scrollbar wrap-class="scrollbar-wrapper">
+    <logo :collapse="!sidebar.opened" />
+    <div class="scrollbar-wrapper">
       <el-menu
         :default-active="activeMenu"
         :collapse="!sidebar.opened"
@@ -11,7 +11,7 @@
       >
         <sidebar-item v-for="route in menu[0].children" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
-    </el-scrollbar>
+    </div>
   </div>
 </template>
 
