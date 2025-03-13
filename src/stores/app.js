@@ -5,20 +5,20 @@ const useAppStore = defineStore('app', {
   state: () => {
     return {
       sidebar: {
-         opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
-      }
+        opened: Cookies.get('sidebarStatus') ? !!+Cookies.get('sidebarStatus') : true,
+      },
     }
   },
   actions: {
-    toggleSideBar() {
-      this.sidebar.opened = !this.sidebar.opened
+    toggleSideBar(flag) {
+      this.sidebar.opened = flag !== undefined ? flag : !this.sidebar.opened
       if (this.sidebar.opened) {
         Cookies.set('sidebarStatus', 1)
       } else {
         Cookies.set('sidebarStatus', 0)
       }
-    }
-  }
+    },
+  },
 })
 
 export default useAppStore

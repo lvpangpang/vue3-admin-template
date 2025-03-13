@@ -170,8 +170,8 @@ export default {
           this.background = configs['background'] || this.background
           sessionStorage.setItem('configs', JSON.stringify(configs))
           const title = configs['name']
-          document.title = title
-          localStorage.setItem('title', title)
+          // document.title = title
+          // localStorage.setItem('title', title)
           localStorage.setItem('icon-theme', configs.icon)
         }
       })

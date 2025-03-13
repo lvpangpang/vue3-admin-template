@@ -11,10 +11,11 @@
 </template>
 
 <script>
-import { mapState } from 'pinia'
+import { mapState, mapActions } from 'pinia'
 import { Sidebar, Navbar, AppMain } from './components'
 import useAppStore from '@/stores/app'
 
+const WIDTH = 1366
 export default {
   name: 'LayoutIndex',
   components: {
@@ -28,6 +29,32 @@ export default {
       return {
         hideSidebar: !this.sidebar.opened,
         openSidebar: this.sidebar.opened
+      }
+    }
+  },
+  beforeMount() {
+    window.addEventListener('resize', this.$_resizeHandler)
+  },
+  mounted() {
+    this.$_resizeHandler()
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.$_resizeHandler)
+  },
+  methods: {
+    ...mapActions(useAppStore, {
+      toggleSideBar: 'toggleSideBar'
+    }),
+    $_isMobile() {
+      const rect = document.body.getBoundingClientRect()
+      return rect.width - 1 < WIDTH
+    },
+    $_resizeHandler() {
+      if (!document.hidden) {
+        const isMobile = this.$_isMobile()
+        if (isMobile) {
+         this.toggleSideBar(0)
+        }
       }
     }
   }

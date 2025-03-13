@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar-logo">
-    <span v-if="!collapse">XX管理系统</span>
+    <router-link v-if="!collapse" to="/">XX智慧系统</router-link>
     <span v-else>XX</span>
   </div>
 </template>
@@ -28,5 +28,9 @@ export default {
   overflow: hidden;
   color: #fff;
   font-size: 22px;
+  a {
+    color: #fff;
+    text-decoration: none;
+  }
 }
 </style>
