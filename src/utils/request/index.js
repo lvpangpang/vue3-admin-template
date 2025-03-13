@@ -6,8 +6,9 @@ import { getSignature } from './signature'
 import { getFileName, downloadFile } from './download'
 
 const { timeout, independentBaseUrl } = requestConfig
+console.log(import.meta.env.VITE_BASE_URL)
 const service = axios.create({
-  baseURL: import.meta.env.VITE_BASE_API,
+  baseURL: import.meta.env.VITE_BASE_URL,
   timeout,
 })
 

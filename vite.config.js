@@ -13,7 +13,7 @@ export default ({ mode }) => {
     const res = {}
     arr.forEach((item) => {
       res[`/${item}-module`] = {
-        target: env.VITE_BASE_URL,
+        target: env.VITE_PROXY_TARGET,
         changeOrigin: true,
       }
     })
